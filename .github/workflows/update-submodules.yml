@@ -16,9 +16,10 @@ jobs:
           submodules: recursive
           token: ${{ secrets.KUNSHAN_TOKEN }}
         
-      - name: checkout data repo
+      - name: run update script
         uses: actions/github-script@v2
         with:
+          github-token: ${{ secrets.KUNSHAN_TOKEN }}
           script: |
             #!/bin/sh
 
