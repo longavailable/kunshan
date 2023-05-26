@@ -1,0 +1,32 @@
+name: Update submodules automactially
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [update-submodules]
+    
+jobs:
+  update-submodules:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: checkout repos
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          token: ${{ secrets.KUNSHAN_TOKEN }}
+        
+      - name: checkout data repo
+        uses: actions/github-script@v2
+        with:
+          script: |
+            #!/bin/sh
+
+            # Check if the submodule has changed
+            if git diff --quiet submodule.git; then
+              # The submodule has not changed, do nothing
+              exit 0
+            fi
+
+            # The submodule has changed, update it
+            git submodule update --init --recursive
