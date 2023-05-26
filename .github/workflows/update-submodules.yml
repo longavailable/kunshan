@@ -16,18 +16,14 @@ jobs:
           submodules: recursive
           token: ${{ secrets.KUNSHAN_TOKEN }}
         
-      - name: run update script
-        uses: actions/github-script@v2
+      - name: Update submodules recursively
+        run: |
+          git submodule update --init --recursive
+          git submodule update --recursive --remote
+          
+      - name: commit and push
+        uses: longavailable/simple-push-action@longavailable
         with:
-          github-token: ${{ secrets.KUNSHAN_TOKEN }}
-          script: |
-            #!/bin/sh
-
-            # Check if the submodule has changed
-            if git diff --quiet submodule.git; then
-              # The submodule has not changed, do nothing
-              exit 0
-            fi
-
-            # The submodule has changed, update it
-            git submodule update --init --recursive
+          token: ${{ secrets.KUNSHAN_TOKEN }}
+          message: "Update submodules from Action `date`"
+          
