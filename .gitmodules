@@ -4,3 +4,6 @@
 [submodule "kunshan-landuse"]
 	path = kunshan-landuse
 	url = https://github.com/longavailable/kunshan-landuse
+[submodule "kunshan-hydro"]
+	path = kunshan-hydro
+	url = https://github.com/longavailable/kunshan-hydro
