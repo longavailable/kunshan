@@ -7,3 +7,6 @@
 [submodule "kunshan-hydro"]
 	path = kunshan-hydro
 	url = https://github.com/longavailable/kunshan-hydro
+[submodule "kunshan-flood"]
+	path = kunshan-flood
+	url = https://github.com/longavailable/kunshan-flood
